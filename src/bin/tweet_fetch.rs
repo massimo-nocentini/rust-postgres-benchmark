@@ -16,7 +16,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let test_id = 1;
 
-    // check that inserted todo is visible outside the transaction after commit
     let tweets = query_as!(
         Tweet,
         r#"SELECT id, created_at, text, owner_id FROM tweet WHERE owner_id = $1"#,
