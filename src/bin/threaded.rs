@@ -18,7 +18,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let contents = fs::read_to_string(query_path).expect("Should have been able to read the file");
 
     println!("Spawning {} threads", n_threads);
-    println!("Query: {}", contents);
+    println!("Query:\n{}\n-----------------------------", contents);
 
     let instant = std::time::Instant::now();
 
