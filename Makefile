@@ -2,8 +2,11 @@
 build:
 	cargo build --release
 
-run:	
-	DATABASE_URL="postgres://postgres:password@localhost/benchmark_db" cargo run tweet_fetch --release
+tweet_fetch:	
+	DATABASE_URL="postgres://postgres:password@localhost/benchmark_db" cargo run --release --bin tweet_fetch 
 
-docker-up:
+threaded:
+	DATABASE_URL="postgres://postgres:password@localhost/benchmark_db" time cargo run --release --bin threaded -- 1000 ./postgres/simple-insert.sql
+
+dockerup:
 	docker compose up
