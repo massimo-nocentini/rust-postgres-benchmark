@@ -1,0 +1,15 @@
+services:
+  postgres-17:
+    build:
+      context: .
+      dockerfile: postgres/Dockerfile
+      args:
+          VERSION: 17
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: benchmark_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - "./postgres/setup.sql:/docker-entrypoint-initdb.d/setup.sql:ro"
