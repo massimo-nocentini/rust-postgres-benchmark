@@ -20,6 +20,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Spawning {} threads", n_threads);
     println!("Query: {}", contents);
 
+    let instant = std::time::Instant::now();
+
     let mut handles = Vec::new();
     for _thread_id in 0..n_threads {
         let pool = pool.clone();
@@ -40,7 +42,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         rows += h.await.expect("The task being joined has panicked");
     }
 
-    println!("Total rows affected: {}", rows);
+    println!("Total rows affected {} in {:?}.", rows, instant.elapsed());
 
     Ok(())
 }
